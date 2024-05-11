@@ -1,18 +1,15 @@
-{{ config(materialized='view') }}
-WITH source AS (
-    SELECT
-        id_concessionarias,
-        TRIM(concessionaria) AS nome_concessionaria, 
-        id_cidades,
-        data_inclusao,
-        COALESCE(data_atualizacao, data_inclusao) AS data_atualizacao 
-    FROM {{ source('sources', 'concessionarias') }}
-)
+{{ config(materialized="view") }}
+with
+    source as (
+        select
+            id_concessionarias,
+            trim(concessionaria) as nome_concessionaria,
+            id_cidades,
+            data_inclusao,
+            coalesce(data_atualizacao, data_inclusao) as data_atualizacao
+        from {{ source("sources", "concessionarias") }}
+    )
 
-SELECT
-    id_concessionarias,
-    nome_concessionaria,
-    id_cidades,
-    data_inclusao,
-    data_atualizacao
-FROM source
+select
+    id_concessionarias, nome_concessionaria, id_cidades, data_inclusao, data_atualizacao
+from source
