@@ -1,8 +1,9 @@
-{{ config(materialized="table") }}
-select
-    id_cidades as cidade_id,
-    nome_cidade,
-    id_estados as estado_id,
+{{ config(materialized='table') }}
+SELECT
+    id_clientes AS cliente_id,
+    cliente AS nome_cliente,
+    endereco,
+    id_concessionarias AS concessionaria_id,
     data_inclusao,
     data_atualizacao
-from {{ ref("stg_cidades") }}
+FROM {{ ref('stg_clientes') }}
