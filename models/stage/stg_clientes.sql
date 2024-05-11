@@ -3,7 +3,7 @@ with
     source as (
         select
             id_clientes,
-            initcap(client) as cliente,
+            initcap(cliente) as cliente,
             trim(endereco) as endereco,
             id_concessionarias,
             data_inclusao,
